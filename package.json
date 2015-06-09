@@ -1,0 +1,19 @@
+{
+  "name": "express-practice",
+  "version": "0.0.0",
+  "description": "Express tuturials",
+  "main": "server/run.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fppgodinho/express-practice.git"
+  },
+  "author": "cainvampyr@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fppgodinho/express-practice/issues"
+  },
+  "homepage": "https://github.com/fppgodinho/express-practice"
+}
