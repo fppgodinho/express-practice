@@ -2,9 +2,10 @@
   "name":           "express-practice",
   "version":        "0.0.0",
   "description":    "Express tuturials",
-  "main":           "server/run.js",
+  "main":           "server/helloWorld.js",
   "scripts": {
-    "test":         "echo \"Error: no test specified\" && exit 1"
+    "test":         "echo \"Error: no test specified\" && exit 1",
+    "start":        "node server/run.js"
   },
   "repository": {
     "type":         "git",
