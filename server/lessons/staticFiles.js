@@ -1,19 +1,30 @@
 /**
  * Created by Cain on 09-06-2015.
  */
-var express     = require('express');
-var app         = express();
+var express         = require('express');
 
-app.use('/', express.static('client/public'));
+// Constructor
+function StaticFiles(port) {
+    var self        = {};
+    self.id         = Math.round(Math.random() * 100);
+    self.toString   = function() { return "[StaticFiles:" + port + "]"; };
 
-app.use(function(req, res, next){
-    res.status(404);
-    res.send('Meh!');
+    var app         = express();
+    app.use('/', express.static(__base + 'client/public'));
+    app.use(function(req, res, next){
+        res.status(404);
+        res.send('Meh!');
+    });
+    self.getApp     = function() { return app; };
 
-});
+    var server      = app.listen(port, function() {
+        var host    = server.address().address;
+        var port    = server.address().port;
+        console.log('Example app listening at http://%s:%s', host, port);
+    });
+    self.getServer  = function() { return server; };
 
-var server      = app.listen(3000, function () {
-    var host    = server.address().address;
-    var port    = server.address().port;
-    console.log('Example app listening at http://%s:%s', host, port);
-});
+    return self;
+}
+
+module.exports      = StaticFiles;

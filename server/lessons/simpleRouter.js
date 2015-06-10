@@ -1,22 +1,32 @@
 /**
  * Created by Cain on 09-06-2015.
  */
-var express     = require('express');
-var router      = express.Router();
-var app         = express();
+var express         = require('express');
 
-// Log access:
-router.use(function(req, res, next) { console.log(req.ip + ":" + req.originalUrl); next(); });
+// Constructor
+function SimpleRouter(port) {
+    var self        = {};
+    self.id         = Math.round(Math.random() * 100);
+    self.toString   = function() { return "[SimpleRouter:" + port + "]"; };
 
-// Static Assets
-router.use('/', express.static('client/public'));
+    var router      = express.Router();
+    router.use(function(req, res, next) { console.log(req.ip + ":" + req.originalUrl); next(); });
+    router.use('/', express.static('client/public'));
+    router.use(function(req, res, next) { res.status(404); res.send('Meh!'); });
+    self.getRouter  = function() { return router; };
 
-// 404
-router.use(function(req, res, next) { res.status(404); res.send('Meh!'); });
+    var app         = express();
+    app.use(router);
+    self.getApp     = function() { return app; };
 
-app.use(router);
-var server      = app.listen(3000, function() {
-    var host    = server.address().address;
-    var port    = server.address().port;
-    console.log('Example app listening at http://%s:%s', host, port);
-});
+    var server      = app.listen(port, function() {
+        var host    = server.address().address;
+        var port    = server.address().port;
+        console.log('Example app listening at http://%s:%s', host, port);
+    });
+    self.getServer  = function() { return server; };
+
+    return self;
+}
+
+module.exports      = SimpleRouter;
