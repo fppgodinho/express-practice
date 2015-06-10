@@ -18,6 +18,7 @@
   },
   "homepage":       "https://github.com/fppgodinho/express-practice",
   "dependencies": {
+    "ejs":          "^2.3.1",
     "express":      "~4.12.4"
   }
 }
