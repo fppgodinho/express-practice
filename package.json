@@ -1,23 +1,24 @@
 {
-  "name":           "express-practice",
-  "version":        "0.0.0",
-  "description":    "Express tuturials",
-  "main":           "run.js",
+  "name":         "express-practice",
+  "version":      "0.0.0",
+  "description":  "Express tuturials",
+  "main":         "run.js",
   "scripts": {
-    "test":         "echo \"Error: no test specified\" && exit 1",
-    "start":        "node run.js"
+    "test":       "echo \"Error: no test specified\" && exit 1",
+    "start":      "node run.js"
   },
   "repository": {
-    "type":         "git",
-    "url":          "https://github.com/fppgodinho/express-practice.git"
+    "type":       "git",
+    "url":        "https://github.com/fppgodinho/express-practice.git"
   },
-  "author":         "cainvampyr@gmail.com",
-  "license":        "ISC",
+  "author":       "cainvampyr@gmail.com",
+  "license":      "ISC",
   "bugs": {
-    "url":          "https://github.com/fppgodinho/express-practice/issues"
+    "url":        "https://github.com/fppgodinho/express-practice/issues"
   },
-  "homepage":       "https://github.com/fppgodinho/express-practice",
+  "homepage":     "https://github.com/fppgodinho/express-practice",
   "dependencies": {
-    "express":      "~4.12.4"
+    "express":    "~4.12.4",
+    "jade":       "^1.10.0"
   }
 }
