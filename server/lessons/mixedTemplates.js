@@ -4,16 +4,20 @@
 var express             = require('express');
 
 // Constructor
-function SimpleRouter(port) {
+function MixedTemplates(port) {
     var self            = {};
     self.id             = Math.round(Math.random() * 100);
-    self.toString       = function() { return "[SimpleRouter:" + port + "]"; };
+    self.toString       = function() { return "[MixedTemplates:" + port + "]"; };
 
     var router          = express.Router();
     router.use(function(req, res, next) { console.log(req.ip + ":" + req.originalUrl); next(); });
 
-    router.get('/', function (req, res) {
-        res.render('index.ejs', { title: 'Express Tutorials', message: 'Express Tutorials'});
+    router.get('/jade', function (req, res) {
+        res.render('jade/index.jade', { title: 'Express Tutorials', message: 'Express Tutorials'});
+    });    
+    
+    router.get('/ejs', function (req, res) {
+        res.render('ejs/index.ejs', { title: 'Express Tutorials', message: 'Express Tutorials'});
     });    
     
     router.use('/', express.static('client/public'));
@@ -22,8 +26,9 @@ function SimpleRouter(port) {
 
     var app             = express();
     app.locals.pretty   = true;
-    app.set('views', __base + 'client/src/ejs');
-    app.engine("ejs", require("ejs").renderFile);
+    app.set('views', __base + 'client/src');
+    app.engine('.jade', require('jade').__express);
+    app.engine('.ejs', require('ejs').renderFile);
     app.use(router);
     self.getApp         = function() { return app; };
 
@@ -37,4 +42,4 @@ function SimpleRouter(port) {
     return self;
 }
 
-module.exports          = SimpleRouter;
+module.exports          = MixedTemplates;
