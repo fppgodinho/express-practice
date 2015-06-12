@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../layout/head %>
+    </head>
+    <body>
+        <% include ../layout/header%>
+        <div class="panel, auth">
+            <div class="line, input" id="username">
+                <div class="label">Username:</div>
+                <input type="text"  name="username" value="<%= username %>" />
+            </div>
+            <div class="line, input"  id="password">
+                <div class="label">Password:</div>
+                <input type="password"  name="password" />
+            </div>
+        </div>
+        <% include ../layout/footer %>
+    </body>
+</html>
