@@ -1,6 +1,7 @@
 /**
  * Created by Cain on 09-06-2015.
  */
+"use strict";
 var express             = require('express');
 
 function ExpressController() {
@@ -8,7 +9,7 @@ function ExpressController() {
     _instance.toString      = function() { return "[server.express.controller]"; };
 
     var _router             = express.Router();
-    _router.use(function(req, res, next) { console.log(req.ip + ":" + req.originalUrl); next(); });
+    _router.use(function(req, res, next) { console.log(new Date(Date.now()).toTimeString() + " " + req.ip + ":" + req.originalUrl); next(); });
     _instance.getRouter     = function() { return _router; };
     
     var _app                = express();

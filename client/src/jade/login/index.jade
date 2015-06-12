@@ -2,11 +2,22 @@
    Created by fernando.godinho on 10/06/15.
 extends ./../layout/index
 
+
 block content
-    div(class="panel, auth")
-        div(class="line, input", id="username")
-            div(class="label") Username:
-            input(type="text", name="username", value=username)
-        div(class="line, input", id="password")
-            div(class="label") Password:
-            input(type="password", name="password")
+    script.
+        var submitForm = function () {
+            var form = document.getElementById('FORM');
+            console.log(form);
+            form.submit();
+        }
+
+    div#AUTH(class="panel, auth")
+        form#FORM(action="" method="post")
+            div#USERNAME(class="line, input")
+                div(class="label") Username:
+                input(type="text", name="username", value=username)
+            div#PASSWORD(class="line, input")
+                div(class="label") Password:
+                input(type="password", name="password")
+            div#CONTROLLERS(class="line, controllers")
+                button#SUBMIT(type="button", onclick="submitForm()") GO!
