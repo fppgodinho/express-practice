@@ -1,17 +1,28 @@
-/**
- * Created by Cain on 09-06-2015.
- */
 "use strict";
+var passport                = require('passport');
+var requestHelper           = include("server.helpers.request");
+var passportController      = include("server.modules.passport.controller");
+
 function PassportDecorator() {
     var _instance           = {};
     _instance.toString      = function() { return "[server.modules.passport.decorator]"; };
 
     _instance.decorate      = function(router) {
+        passportController.decorate(router);
+        
         router.all('/login', function (req, res) {
-            if (req.params || req.body || req.query) console.log("\nPARAMS:" + req.params.username, "\nBODY:" + req.body +"\nQUERY:"+ req.query.username);
-            var username    = "admin";
+            var username    = requestHelper.getParam(req, "username", "admin");
+            //
             res.render('jade/login/index.jade', { username: username});
         });
+        
+        router.all('/login/validate', passport.authenticate('local', {
+            successRedirect:    '/home',
+            failureRedirect:    '/login',
+            failureFlash:       true
+        }));
+        
+        
     };
 
     return _instance;

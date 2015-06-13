@@ -1,18 +1,15 @@
-//-
-   Created by fernando.godinho on 10/06/15.
 extends ./../layout/index
-
 
 block content
     script.
         var submitForm = function () {
             var form = document.getElementById('FORM');
-            console.log(form);
             form.submit();
         }
 
     div#AUTH(class="panel, auth")
-        form#FORM(action="" method="post")
+        form#FORM(action="login/validate" method="post")
+            input#STAGE(hidden=true, name="stage" value="auth")
             div#USERNAME(class="line, input")
                 div(class="label") Username:
                 input(type="text", name="username", value=username)
